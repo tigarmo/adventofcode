@@ -35,14 +35,13 @@ fn sqft(line: &str, accum: &mut i32, bow_accum: &mut i32) {
 pub fn solve() {
     let path = Path::new("input-2.txt");
 
-    let mut file = match File::open(&path) {
+    let file = match File::open(&path) {
         Err(why) => panic!("could not open file because: {}", Error::description(&why)),
         Ok(file) => file,
     };
 
     let file = BufReader::new(file);
 
-    let mut s = String::new();
     let mut accum: i32 = 0;
     let mut bow_accum: i32 = 0;
 
@@ -52,4 +51,24 @@ pub fn solve() {
 
     println!("Total area needed: {}", accum);
     println!("Total bow length needed: {}", bow_accum);
+}
+
+
+#[test]
+fn test_two() {
+
+    let values = [("2x3x4", 58, 34), ("1x1x10", 43, 14)];
+
+    for i in values.iter() {
+        let (line, expected_accum, expected_bow_accum) = *i;
+
+        let mut accum: i32 = 0;
+        let mut bow_accum: i32 = 0;
+
+        sqft(line, &mut accum, &mut bow_accum);
+
+        assert_eq!(accum, expected_accum);
+        assert_eq!(bow_accum, expected_bow_accum);
+    }
+
 }

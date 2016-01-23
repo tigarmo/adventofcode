@@ -23,7 +23,6 @@ fn first_basement(directions: &str) -> usize {
 
     let mut open = 0;
     let mut close = 0;
-    let mut first = 0;
 
     for (i, c) in directions.chars().enumerate() {
         match c {
@@ -32,12 +31,11 @@ fn first_basement(directions: &str) -> usize {
             _ => {}
         }
         if open - close == -1 {
-            first = i;
             return i + 1;
         }
     }
 
-    return first;
+    return 0;
 }
 
 
@@ -60,5 +58,18 @@ pub fn solve() {
                      first_basement(&s))
         }
     }
+
+}
+
+
+#[test]
+fn test_one() {
+    assert_eq!(floor("(())"), 0);
+    assert_eq!(floor("()()"), 0);
+    assert_eq!(floor("))((((("), 3);
+    assert_eq!(floor(")())())"), -3);
+
+    assert_eq!(first_basement(")"), 1);
+    assert_eq!(first_basement("()())"), 5);
 
 }
