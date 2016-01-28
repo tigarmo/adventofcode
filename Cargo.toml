@@ -3,4 +3,5 @@ name = "adventofcode"
 version = "0.1.0"
 authors = ["Tiago Nobrega <tigarmo@gmail.com>"]
 
-[dependencies]
+#[dependencies]
+#rust-crypto = "^0.2"
